@@ -14,11 +14,12 @@ export default async function handler(
         const user = await prisma.user.create({
             data: {
                 email,
-                userName: username,
+                username,
                 name,
                 hashedPassword
             }
         })
+        return res.status(200).json(user);
     } catch (error) {
         console.error(error);
         return res.status(401).json({ message: 'Not signed in' });

@@ -15,7 +15,7 @@ model User {
   name             String?
   email            String    @unique
   veryfiedEmail    DateTime?
-  userName         String    @unique
+  username         String    @unique
   image            String?
   coverImage       String?
   profileImage     String?

@@ -3,6 +3,8 @@ import { Input, Modal } from '@/components';
 import useRegisterModal from '@/hooks/useRegisterModal';
 import useLoginModal from '@/hooks/useLoginModal';
 import axios from 'axios';
+import { toast } from 'react-hot-toast';
+import { signIn } from 'next-auth/react'
 
 
 const RegisterModal = () => {
@@ -11,7 +13,7 @@ const RegisterModal = () => {
 
     const [email, setEmail] = React.useState('')
     const [name, setName] = React.useState('')
-    const [userName, setUserName] = React.useState('')
+    const [username, setUserName] = React.useState('')
     const [password, setPassword] = React.useState('')
     const [isLoading, setIsLoading] = React.useState(false)
 
@@ -23,14 +25,25 @@ const RegisterModal = () => {
             await axios.post('/api/register', {
                 email,
                 password,
-                userName,
+                username,
                 name
             })
+
+            signIn('credentials', {
+                email,
+                password,
+            })
+
+            toast.success('Account created successfully')
+
             registerModal.onClose();
         } catch (error) {
+            toast.error('Something went wrong')
             console.log(error)
+        } finally {
+            setIsLoading(false)
         }
-    }, [registerModal, email, password, userName, name])
+    }, [registerModal, email, password, username, name])
 
     const onToggle = useCallback(() => {
         registerModal.onClose();
@@ -54,7 +67,7 @@ const RegisterModal = () => {
 
             <Input
                 placeholder='Usename'
-                value={userName}
+                value={username}
                 onChange={(e) => setUserName(e.target.value)}
                 disabled={isLoading}
             />
@@ -63,6 +76,7 @@ const RegisterModal = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 disabled={isLoading}
+                type='password'
             />
 
         </div>
