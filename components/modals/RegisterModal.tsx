@@ -1,8 +1,9 @@
 import React, { useCallback } from 'react';
-import Modal from '../Modal';
-import Input from '../Input';
+import { Input, Modal } from '@/components';
 import useRegisterModal from '@/hooks/useRegisterModal';
 import useLoginModal from '@/hooks/useLoginModal';
+import axios from 'axios';
+
 
 const RegisterModal = () => {
     const registerModal = useRegisterModal()
@@ -10,21 +11,26 @@ const RegisterModal = () => {
 
     const [email, setEmail] = React.useState('')
     const [name, setName] = React.useState('')
-    const [useName, setUserName] = React.useState('')
+    const [userName, setUserName] = React.useState('')
     const [password, setPassword] = React.useState('')
     const [isLoading, setIsLoading] = React.useState(false)
 
     const onSubmit = useCallback(async () => {
+
         try {
             setIsLoading(true)
 
-            //TODO: Add login logic here
-
+            await axios.post('/api/register', {
+                email,
+                password,
+                userName,
+                name
+            })
             registerModal.onClose();
         } catch (error) {
             console.log(error)
         }
-    }, [registerModal])
+    }, [registerModal, email, password, userName, name])
 
     const onToggle = useCallback(() => {
         registerModal.onClose();
@@ -48,7 +54,7 @@ const RegisterModal = () => {
 
             <Input
                 placeholder='Usename'
-                value={useName}
+                value={userName}
                 onChange={(e) => setUserName(e.target.value)}
                 disabled={isLoading}
             />
