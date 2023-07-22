@@ -1,4 +1,4 @@
-import Layout from '@/components/Layout'
+import { Layout } from '@/components'
 import { LoginModal, RegisterModal } from '@/components/modals'
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
@@ -6,8 +6,8 @@ import type { AppProps } from 'next/app'
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
-      {/* <LoginModal /> */}
-      {/* <RegisterModal /> */}
+      <LoginModal />
+      <RegisterModal />
       <Layout>
         <Component {...pageProps} />
       </Layout>
