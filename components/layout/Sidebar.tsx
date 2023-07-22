@@ -18,17 +18,20 @@ const Sidebar = () => {
         {
             label: 'Notifications',
             icon: BsBell,
-            href: '/notifications'
+            href: '/notifications',
+            auth: true
         },
         {
             label: 'Messages',
             icon: BsMessenger,
-            href: '/messages'
+            href: '/messages',
+            auth: true
         },
         {
             label: 'User',
             icon: FaUser,
-            href: '/user'
+            href: '/user',
+            auth: true
         }
     ]
     return (
@@ -44,6 +47,7 @@ const Sidebar = () => {
                                     label={item.label}
                                     icon={item.icon}
                                     href={item.href}
+                                    auth={item.auth}
                                 />
                             )
                         })
