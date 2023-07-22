@@ -1,6 +1,8 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { useCallback } from "react";
+import Image from "next/image";
+
 import { useUser } from "@/hooks";
 
 interface AvarProps {
@@ -28,8 +30,8 @@ const Avatar: React.FC<AvarProps> = ({
             className={
                 `
                 ${hasBorder ? 'border-4 border-black' : ''}}
-                ${isLarge ? 'h-32' : 'h-32'}
-                ${isLarge ? 'w-32' : 'w-32'}
+                ${isLarge ? 'h-32' : 'h-12'}
+                ${isLarge ? 'w-32' : 'w-12'}
                 rounded-full
                 hover:opacity-90
                 transition
@@ -37,6 +39,17 @@ const Avatar: React.FC<AvarProps> = ({
                 relative
             `}
         >
+
+            <Image
+                fill
+                style={{
+                    borderRadius: '100%',
+                    objectFit: 'cover'
+                }}
+                alt="avatar"
+                onClick={onClick}
+                src={fetchedUser?.avatar || '/images/default-avatar.png'}
+            />
 
         </div>
     );
