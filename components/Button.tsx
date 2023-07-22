@@ -29,6 +29,7 @@ const Button: React.FC<ButtonProps> = ({
                 transition
                 border-2
                 p-3
+                px-6
                 ${fullWidth ? 'w-full' : 'w-fit'}
                 ${secondary ? 'bg-white' : 'bg-sky-500'}
                 ${secondary ? 'border-black' : 'border-white'}
