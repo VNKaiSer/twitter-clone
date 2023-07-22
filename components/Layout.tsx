@@ -1,5 +1,6 @@
 import React from 'react';
-import { Sidebar, Followbar, Modal } from './layout/'
+import { Followbar, Sidebar } from './layout/';
+
 
 
 interface LayoutProps {

@@ -1,13 +1,16 @@
 import React, { useCallback } from 'react';
-import { useLoginModal } from '@/hooks';
+import Modal from '../Modal';
 import Input from '../Input';
-import { useRegisterModal } from '@/hooks';
-import Button from '../Button';
-const LoginModal = () => {
-    const loginModal = useLoginModal()
+import useRegisterModal from '@/hooks/useRegisterModal';
+import useLoginModal from '@/hooks/useLoginModal';
+
+const RegisterModal = () => {
     const registerModal = useRegisterModal()
+    const loginModal = useLoginModal()
 
     const [email, setEmail] = React.useState('')
+    const [name, setName] = React.useState('')
+    const [useName, setUserName] = React.useState('')
     const [password, setPassword] = React.useState('')
     const [isLoading, setIsLoading] = React.useState(false)
 
@@ -17,16 +20,15 @@ const LoginModal = () => {
 
             //TODO: Add login logic here
 
-            loginModal.onClose();
+            registerModal.onClose();
         } catch (error) {
             console.log(error)
         }
-    }, [loginModal])
+    }, [registerModal])
 
-
-    const onClickSignup = useCallback(() => {
-        loginModal.onClose();
-        registerModal.onOpen();
+    const onToggle = useCallback(() => {
+        registerModal.onClose();
+        loginModal.onOpen();
     }, [loginModal, registerModal])
 
     const bodyContent = (
@@ -37,14 +39,29 @@ const LoginModal = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 disabled={isLoading}
             />
+            <Input
+                placeholder='Name'
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                disabled={isLoading}
+            />
 
+            <Input
+                placeholder='Usename'
+                value={useName}
+                onChange={(e) => setUserName(e.target.value)}
+                disabled={isLoading}
+            />
             <Input
                 placeholder='Password'
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 disabled={isLoading}
             />
+
         </div>
+
+
     )
 
     const footer = (
@@ -65,30 +82,31 @@ const LoginModal = () => {
                 outline-none 
                 focus:outline-none
                 '
-            >First time using Twitter ?
+            >Alredy have an account?
                 <span
-                    className='text-white ml-2 cursor-pointer hover:underline'
-                //onClick={onClickSignup}
-                > Create an acount</span> </p>
+                    onClick={onToggle}
+                    className="
+            text-white 
+            cursor-pointer 
+            hover:underline
+          "
+                > Create an account</span>
+            </p>
         </div>
     )
-
     return (
-        <>
-            {<Button label='Login' onClick={loginModal.onOpen} />}
-            {/* <Modal
-                disabled={isLoading}
-                title="Login"
-                body={bodyContent}
-                onClose={loginModal.onClose}
-                onSubmit={onSubmit}
-                isOpen={loginModal.isOpen}
-                actionLabel='Sign in'
-                footer={footer}
+        <Modal
+            disabled={isLoading}
+            title="Create account"
+            body={bodyContent}
+            onClose={registerModal.onClose}
+            onSubmit={onSubmit}
+            isOpen={registerModal.isOpen}
+            actionLabel='Sign up'
+            footer={footer}
 
-            /> */}
-        </>
+        />
     );
 }
 
-export default LoginModal;
+export default RegisterModal;
