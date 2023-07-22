@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 
-import { Header } from "@/components";
+import { Header, UserHero } from "@/components";
 import { useUser } from "@/hooks";
 import { ClipLoader } from "react-spinners";
 const UserView = () => {
