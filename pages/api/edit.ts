@@ -10,8 +10,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     try {
-        const { data } = useCurrentUser()
-        console.log(data);
+        const { currentUser } = await serverAuth(req, res);
 
 
         const { name, username, bio, profileImage, coverImage } = req.body;
@@ -22,7 +21,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
         const updatedUser = await prisma.user.update({
             where: {
-                id: data.id
+                id: currentUser.id
             },
             data: {
                 name,

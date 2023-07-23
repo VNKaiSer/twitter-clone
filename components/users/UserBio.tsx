@@ -23,7 +23,7 @@ const UserBio: React.FC<UserBioProps> = ({ userId }) => {
     return (
         <div className="border-b-[1px] border-neutral-800 pb-4">
             <div className="flex justify-end p-2">
-                {currentUser?.currentUser?.id == userId ?
+                {currentUser?.id == userId ?
                     <Button secondary label="Edit" onClick={() => { editModal.onOpen() }} /> :
                     <Button label="Follow" onClick={() => { }} />}
             </div>
