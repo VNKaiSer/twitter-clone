@@ -13,7 +13,7 @@ const Sidebar = () => {
         {
             label: 'Home',
             icon: BsHouseFill,
-            href: '/home'
+            href: '/'
         },
         {
             label: 'Notifications',
@@ -30,7 +30,7 @@ const Sidebar = () => {
         {
             label: 'User',
             icon: FaUser,
-            href: '/user',
+            href: `/users/${currentUser?.id}`,
             auth: true
         }
     ]
