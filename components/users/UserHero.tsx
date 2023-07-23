@@ -14,7 +14,7 @@ const UserHero: React.FC<UserHeroProps> = ({ userId }) => {
                     <Image
                         fill
                         style={{
-                            borderRadius: '100%',
+                            // borderRadius: '100%',
                             objectFit: 'cover'
                         }}
                         alt="Cover image"
