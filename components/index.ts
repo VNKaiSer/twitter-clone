@@ -6,5 +6,6 @@ import Header from "./Header";
 import Avatar from "./Avatar";
 import UserHero from "./users/UserHero";
 import UserBio from "./users/UserBio";
+import ImageUpload from "./ImageUpload";
 
-export { Button, Input, Layout, Modal, Header, Avatar, UserHero };
+export { Button, Input, Layout, Modal, Header, Avatar, UserHero, UserBio, ImageUpload };
