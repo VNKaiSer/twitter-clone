@@ -47,7 +47,7 @@ export default async function handler(
                     body: body
                 }
             })
-
+            return res.status(200).json(post);
         }
     } catch (error) {
         console.error(error);

@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <div>
       <Header label='Home' />
-      <Form />
+      <Form placeholder='What happent`s' />
     </div>
   )
 }
